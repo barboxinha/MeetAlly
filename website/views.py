@@ -1,9 +1,11 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
-# View function to handle http request for welcome page
+from meetings.models import Meeting
+
+# View functions to handle http requests
 def welcome(request):
-    return render(request, "website/welcome.html")
+    return render(request, template_name="website/welcome.html", context={"num_meetings": Meeting.objects.count()})
 
 
 def about(request):
