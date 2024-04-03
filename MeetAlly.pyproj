@@ -50,7 +50,7 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="db.sqlite3" />
-    <Content Include="meetings\templates\meetings\index.html" />
+    <Content Include="meetings\templates\meetings\detail.html" />
     <Content Include="requirements.txt" />
     <Content Include="website\templates\website\welcome.html" />
   </ItemGroup>
