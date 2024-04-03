@@ -3,7 +3,7 @@ from django.shortcuts import render
 
 # View function to handle http request for welcome page
 def welcome(request):
-    return HttpResponse("Welcome to MeetAlly! Glad to see you here!")
+    return render(request, "website/welcome.html")
 
 
 def about(request):
