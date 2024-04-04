@@ -40,6 +40,7 @@
     <Compile Include="meetings\admin.py" />
     <Compile Include="meetings\migrations\__init__.py" />
     <Compile Include="meetings\models.py" />
+    <Compile Include="meetings\urls.py" />
     <Compile Include="meetings\views.py" />
     <Compile Include="meetings\__init__.py" />
     <Compile Include="website\views.py" />
