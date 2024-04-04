@@ -5,7 +5,7 @@ from meetings.models import Meeting
 
 # View functions to handle http requests
 def welcome(request):
-    return render(request, template_name="website/welcome.html", context={"num_meetings": Meeting.objects.count()})
+    return render(request, template_name="website/welcome.html", context={"meetings": Meeting.objects.all()})
 
 
 def about(request):
