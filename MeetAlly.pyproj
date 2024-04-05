@@ -52,6 +52,7 @@
     </Content>
     <Content Include="db.sqlite3" />
     <Content Include="meetings\templates\meetings\detail.html" />
+    <Content Include="meetings\templates\meetings\new.html" />
     <Content Include="meetings\templates\meetings\room_list.html" />
     <Content Include="requirements.txt" />
     <Content Include="website\static\website\style.css" />
