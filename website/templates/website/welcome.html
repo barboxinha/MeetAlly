@@ -1,21 +1,15 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="{% static 'website/style.css' %}">
-    <title>MeetAlly - Meetings made easy!</title>
-</head>
+{% extends 'base.html' %}
 
-<body>
+{% block title %}MeetAlly - Meetings made easy!{% endblock %}
+
+{% block content %}
     <h1>Welcome to MeetAlly!</h1>
     <p><strong>MeetAlly</strong> is a web application that helps you schedule meetings with your colleagues smoothly.</p>
     <h2>Meetings</h2>
     <ul>
         {% for meeting in meetings %}
-            <li><a href="{% url 'detail' meeting.id %}">{{meeting.title}}</a></li>
+        <li><a href="{% url 'detail' meeting.id %}">{{meeting.title}}</a></li>
         {% endfor %}
     </ul>
     <a href="{% url 'rooms' %}">Room List</a>
-</body>
-</html>
+{% endblock %}

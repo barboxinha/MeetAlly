@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Rooms</title>
-</head>
+{% extends 'base.html' %}
 
-<body>
+{% block title %}Rooms{% endblock %}
+
+{% block content %}
     <h1>Rooms</h1>
     <ul>
         {% for room in rooms %}
@@ -13,5 +10,4 @@
         {% endfor %}
     </ul>
     <a href="{% url 'welcome' %}">Home</a>
-</body>
-</html>
+{% endblock %}

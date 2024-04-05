@@ -55,6 +55,7 @@
     <Content Include="meetings\templates\meetings\room_list.html" />
     <Content Include="requirements.txt" />
     <Content Include="website\static\website\style.css" />
+    <Content Include="website\templates\base.html" />
     <Content Include="website\templates\website\welcome.html" />
   </ItemGroup>
   <ItemGroup>
