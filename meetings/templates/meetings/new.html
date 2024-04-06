@@ -5,9 +5,11 @@
 <!-- The nice thing about Django is it can generate your form html based on your Models -->
 {% block content %}
 <h1>Plan a New Meeting</h1>
-<form>
+<form method="post">
     <table>
         {{ form }}
     </table>
+    {% csrf_token %}
+    <button type="submit">Create</button>
 </form>
 {% endblock %}
