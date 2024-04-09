@@ -40,3 +40,13 @@ def edit(request, id):
     else:
         form = MeetingForm(instance=meeting)
     return render(request, "meetings/edit.html", {"form": form})
+
+
+def delete(request, id):
+    meeting = get_object_or_404(Meeting, pk=id)
+    if request.method == "POST":
+        # Form is only shown to ask for confirmation.
+        # When we get a POST request, we know we can go ahead and delete.
+        meeting.delete()
+        return redirect("welcome")
+    return render(request, "meetings/confirm_delete.html", {"meeting": meeting})

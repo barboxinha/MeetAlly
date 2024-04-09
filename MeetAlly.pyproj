@@ -51,6 +51,7 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="db.sqlite3" />
+    <Content Include="meetings\templates\meetings\confirm_delete.html" />
     <Content Include="meetings\templates\meetings\detail.html" />
     <Content Include="meetings\templates\meetings\edit.html" />
     <Content Include="meetings\templates\meetings\new.html" />
