@@ -1,11 +1,17 @@
 {% extends 'base.html' %}
 
-{% block title %}Meeting: {{meeting.title}}{% endblock %}
+{% block title %}Meeting: {{ meeting.title }}{% endblock %}
 
 {% block content %}
-    <h1>{{meeting.title}}</h1>
-    <p>This meeting has been scheduled on <em>{{meeting.date}}</em>, at <strong>{{meeting.start_time}}</strong> in <strong>{{meeting.room}}</strong>.</p>
-    <a href="{% url 'edit' meeting.id %}">Update this meeting</a><br>
-    <a href="{% url 'delete' meeting.id %}">Delete this meeting</a><br>
+    <h1>{{ meeting.title }}</h1>
+    <p>This meeting has been scheduled on <em>{{ meeting.date }}</em>, at <strong>{{ meeting.start_time }}</strong> in <strong>{{ meeting.room }}</strong>.</p>
+    <h2>Participants</h2>
+    <ul>
+        {% for participant in meeting.participants.all %}
+            <li>{{ participant.username }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'edit' meeting.id %}">Update this meeting</a><br/>
+    <a href="{% url 'delete' meeting.id %}">Delete this meeting</a><br/>
     <a href="{% url 'welcome' %}">Home</a>
 {% endblock %}
