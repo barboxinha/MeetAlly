@@ -57,6 +57,7 @@
     <Content Include="meetings\templates\meetings\new.html" />
     <Content Include="meetings\templates\meetings\room_list.html" />
     <Content Include="requirements.txt" />
+    <Content Include="templates\registration\login.html" />
     <Content Include="website\static\website\style.css" />
     <Content Include="website\templates\base.html" />
     <Content Include="website\templates\website\welcome.html" />
@@ -67,6 +68,8 @@
     <Folder Include="meetings\migrations\" />
     <Folder Include="meetings\templates\" />
     <Folder Include="meetings\templates\meetings\" />
+    <Folder Include="templates\" />
+    <Folder Include="templates\registration\" />
     <Folder Include="website\" />
     <Folder Include="website\static\" />
     <Folder Include="website\static\website\" />
