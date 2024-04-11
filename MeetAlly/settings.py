@@ -121,3 +121,23 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL= "/"
 LOGOUT_REDIRECT_URL= "/"
 LOGIN_URL = "/auth/login"
+
+# Configure Django to log all SQL queries to the console
+# Not for production use
+# https://docs.djangoproject.com/en/dev/ref/settings/#logging
+LOGGING = {
+    'version': 1,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler'
+        }
+    },
+    'loggers': {
+        'django.db.backends': {
+            'level': 'DEBUG'
+        }
+    },
+    'root': { 
+        'handlers': ['console']
+    }
+}
