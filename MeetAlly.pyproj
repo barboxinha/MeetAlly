@@ -59,7 +59,7 @@
     <Content Include="requirements.txt" />
     <Content Include="templates\registration\login.html" />
     <Content Include="website\static\website\style.css" />
-    <Content Include="website\templates\base.html" />
+    <Content Include="templates\base.html" />
     <Content Include="website\templates\website\welcome.html" />
   </ItemGroup>
   <ItemGroup>
