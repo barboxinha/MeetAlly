@@ -1,15 +1,18 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from django.forms import modelform_factory
+from django.contrib.auth.decorators import login_required
 
 from meetings.models import Meeting, Room
 
 
 # View functions
+@login_required
 def detail(request, id):
     meeting = get_object_or_404(Meeting, pk=id)
     return render(request, "meetings/detail.html", {"meeting": meeting})
 
 
+@login_required
 def room_list(request):
     rooms = Room.objects.all()
     return render(request, "meetings/room_list.html", {"rooms": rooms})
@@ -19,6 +22,7 @@ def room_list(request):
 # To exclude specific fields from the form, pass them as a list to the exclude parameter.
 MeetingForm = modelform_factory(Meeting, exclude=[])
 
+@login_required
 def new(request):
     if request.method == "POST":
         form = MeetingForm(request.POST)
@@ -30,6 +34,7 @@ def new(request):
     return render(request, "meetings/new.html", {"form": form})
 
 
+@login_required
 def edit(request, id):
     meeting = get_object_or_404(Meeting, pk=id)
     if request.method == "POST":
@@ -42,6 +47,7 @@ def edit(request, id):
     return render(request, "meetings/edit.html", {"form": form})
 
 
+@login_required
 def delete(request, id):
     meeting = get_object_or_404(Meeting, pk=id)
     if request.method == "POST":

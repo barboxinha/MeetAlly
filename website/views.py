@@ -5,7 +5,11 @@ from meetings.models import Meeting
 
 # View functions to handle http requests
 def welcome(request):
-    return render(request, template_name="website/welcome.html", context={"meetings": Meeting.objects.all()})
+    if request.user.is_authenticated:
+        context = {"meetings": Meeting.objects.all()}
+    else:
+        context = {}
+    return render(request, template_name="website/welcome.html", context=context)
 
 
 def about(request):
