@@ -5,11 +5,13 @@
 {% block content %}
     <h1>Welcome to MeetAlly!</h1>
     <p><strong>MeetAlly</strong> is a web application that helps you schedule meetings with your colleagues smoothly.</p>
-    <h2>Meetings</h2>
-    <ul>
-        {% for meeting in meetings %}
-        <li><a href="{% url 'detail' meeting.id %}">{{meeting.title}}</a></li>
-        {% endfor %}
-    </ul>
-    <a href="{% url 'rooms' %}">Room List</a>
+    {% if user.is_authenticated %}
+        <h2>Meetings</h2>
+        <ul>
+            {% for meeting in meetings %}
+            <li><a href="{% url 'detail' meeting.id %}">{{meeting.title}}</a></li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'rooms' %}">Room List</a>
+    {% endif %}
 {% endblock %}
