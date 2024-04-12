@@ -8,13 +8,17 @@
 </head>
 <body>
     {% if user.is_authenticated %}
-        Logged in as {{ user.get_username }}
+    <header>
+        <span class="login">Logged in as {{ user.get_username }}</span>
         <form method="post" action="{% url 'logout' %}" style="float:right">
             {% csrf_token %}
             <button type="submit">Logout</button>
         </form>
+    </header>
     {% else %}
-        <a href="{% url 'login' %}">Login</a>
+    <header>
+        <a href="{% url 'login' %}" class="login">Login</a>
+    </header>
     {% endif %}
     {% block content %}
     {% endblock %}
