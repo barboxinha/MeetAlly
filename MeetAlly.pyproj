@@ -58,6 +58,7 @@
     <Content Include="meetings\templates\meetings\room_list.html" />
     <Content Include="requirements.txt" />
     <Content Include="templates\registration\login.html" />
+    <Content Include="website\static\website\calendar.png" />
     <Content Include="website\static\website\style.css" />
     <Content Include="templates\base.html" />
     <Content Include="website\templates\website\welcome.html" />

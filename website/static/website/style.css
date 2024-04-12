@@ -37,3 +37,8 @@ header {
 .login {
     float: left;
 }
+
+/* Welcome Page */
+#create-new-btn {
+    display: block;
+}

@@ -1,13 +1,15 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}MeetAlly - Meetings made easy!{% endblock %}
 
 {% block content %}
     <h1>Welcome to MeetAlly!</h1>
     <p>Schedule meetings with your colleagues <strong>Anytime, Anywhere</strong></p>
+    <img src="{% static 'website/calendar.png' %}" alt="Calendar Icon" width="100px"/>
     {% if user.is_authenticated %}
+        <a id="create-new-btn" href="{% url 'new' %}">Create New Meeting</a>
         <h2>Meetings</h2>
-        <a href="{% url 'new' %}">Create New Meeting</a>
         <ul>
             {% for meeting in meetings %}
             <li><a href="{% url 'detail' meeting.id %}">{{meeting.title}}</a></li>
