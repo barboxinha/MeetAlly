@@ -29,7 +29,7 @@
                 <img src="{% static 'website/calendar.png' %}" alt="">
                 MeetAlly
             </a>
-    {% if user.is_authenticated %}
+            {% if user.is_authenticated %}
             <div class="nav-links">
                 <a href="{% url 'welcome' %}">Meetings</a>
                 <a href="{% url 'rooms' %}">Rooms</a>
@@ -40,20 +40,24 @@
                     <span>{{ user.get_username }}</span>
                 </div>
                 <form method="post" action="{% url 'logout' %}">
-            {% csrf_token %}
+                    {% csrf_token %}
                     <button type="submit" class="btn-secondary btn-sm">Log Out</button>
-        </form>
+                </form>
             </div>
-    {% else %}
+            {% else %}
             <div class="nav-user">
                 <a href="{% url 'login' %}" class="btn btn-sm">Log In</a>
             </div>
-    {% endif %}
+            {% endif %}
+            <button type="button" class="theme-toggle" role="switch" aria-checked="false" aria-label="Dark mode" id="theme-toggle">
+                <span class="theme-toggle-label">Dark Mode</span>
+                <span class="theme-toggle-track" aria-hidden="true"><span class="theme-toggle-thumb"></span></span>
+            </button>
         </nav>
     </header>
     <main class="container {% block container_class %}{% endblock %}">
-    {% block content %}
-    {% endblock %}
+        {% block content %}
+        {% endblock %}
     </main>
     <footer class="site-footer">
         <p>&copy; MeetAlly, Inc. {% now "Y" %} All rights reserved.</p>
