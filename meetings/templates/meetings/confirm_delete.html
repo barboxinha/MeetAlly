@@ -2,13 +2,20 @@
 
 {% block title %}Delete Meeting: {{ meeting.title }}{% endblock %}
 
+{% block container_class %}container-narrow{% endblock %}
+
 {% block content %}
-<h1>Delete {{ meeting.title }}</h1>
-<form method="post">
-    {% csrf_token %}
-    <h3>Are you sure you want to delete this meeting?</h3>
-    {% csrf_token %}
-    <button type="submit">Yes</button>
-    <a href="{% url 'detail' meeting.id %}">No, take me back</a>
-</form>
+<div class="card">
+    <div class="page-title">
+        <h1>Delete {{ meeting.title }}?</h1>
+        <p>Are you sure you want to delete this meeting? This cannot be undone.</p>
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        <div class="actions">
+            <button type="submit" class="btn-danger">Yes, delete it</button>
+            <a class="btn btn-secondary" href="{% url 'detail' meeting.id %}">No, take me back</a>
+        </div>
+    </form>
+</div>
 {% endblock %}

@@ -3,11 +3,27 @@
 {% block title %}Rooms{% endblock %}
 
 {% block content %}
+    <a class="back-link" href="{% url 'welcome' %}">&lsaquo; All meetings</a>
+    <div class="card">
+        <div class="card-header">
     <h1>Rooms</h1>
     <ul>
+        </div>
+        <ul class="list">
         {% for room in rooms %}
-            <li>{{ room }}</li>
+                <li class="list-item">
+                    <span class="date-badge">
+                        <span class="date-badge-month">Floor</span>
+                        <span class="date-badge-day">{{ room.floor }}</span>
+                    </span>
+                    <span class="list-item-body">
+                        <span class="list-item-title">{{ room.name }}</span>
+                        <span class="list-item-meta">Room {{ room.room_number }}</span>
+                    </span>
+                </li>
+            {% empty %}
+                <li class="list-item muted">No rooms have been added yet.</li>
         {% endfor %}
     </ul>
-    <a href="{% url 'welcome' %}">Home</a>
+    </div>
 {% endblock %}

@@ -3,15 +3,45 @@
 {% block title %}Meeting: {{ meeting.title }}{% endblock %}
 
 {% block content %}
+    <a class="back-link" href="{% url 'welcome' %}">&lsaquo; All meetings</a>
+    <div class="card">
     <h1>{{ meeting.title }}</h1>
-    <p>This meeting has been scheduled on <em>{{ meeting.date }}</em>, at <strong>{{ meeting.start_time }}</strong> in <strong>{{ meeting.room }}</strong>.</p>
+        <div class="meta-grid">
+            <div class="meta-item">
+                <span class="meta-label">Date</span>
+                <span class="meta-value">{{ meeting.date|date:"D, M j, Y" }}</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Start time</span>
+                <span class="meta-value">{{ meeting.start_time|time:"g:i A" }}</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Duration</span>
+                <span class="meta-value">{{ meeting.duration }} hour{{ meeting.duration|pluralize }}</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Room</span>
+                <span class="meta-value">{{ meeting.room.name }}</span>
+                <span class="list-item-meta">Room {{ meeting.room.room_number }}, floor {{ meeting.room.floor }}</span>
+            </div>
+        </div>
+
     <h2>Participants</h2>
-    <ul>
+        <ul class="list">
         {% for participant in meeting.participants.all %}
-            <li>{{ participant.username }}</li>
+                <li class="list-item">
+                    <span class="avatar">{{ participant.username|first }}</span>
+                    <span class="list-item-body">{{ participant.username }}</span>
+                </li>
+            {% empty %}
+                <li class="list-item muted">No participants yet.</li>
         {% endfor %}
     </ul>
     <a href="{% url 'edit' meeting.id %}">Update this meeting</a><br/>
     <a href="{% url 'delete' meeting.id %}">Delete this meeting</a><br/>
-    <a href="{% url 'welcome' %}">Home</a>
+            <div class="actions">
+                <a class="btn" href="{% url 'edit' meeting.id %}">Update this meeting</a>
+                <a class="btn btn-secondary" href="{% url 'delete' meeting.id %}">Delete</a>
+            </div>
+    </div>
 {% endblock %}

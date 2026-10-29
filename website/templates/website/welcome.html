@@ -4,17 +4,46 @@
 {% block title %}MeetAlly - Meetings made easy!{% endblock %}
 
 {% block content %}
-    <h1>Welcome to MeetAlly!</h1>
-    <p>Schedule meetings with your colleagues <strong>Anytime, Anywhere</strong></p>
-    <img src="{% static 'website/calendar.png' %}" alt="Calendar Icon" width="100px"/>
+    <section class="hero">
+        <div class="hero-icon">
+            <img src="{% static 'website/calendar.png' %}" alt="Calendar Icon"/>
+        </div>
+        <h1>Welcome to
+            <picture class="wordmark-light">
+            </picture></h1>
+        <p>Schedule meetings with your colleagues <span class="highlight">Anytime, Anywhere</span>.</p>
+    </section>
+
     {% if user.is_authenticated %}
-        <a id="create-new-btn" href="{% url 'new' %}">Create New Meeting</a>
+        <section class="card">
+            <div class="card-header">
         <h2>Meetings</h2>
-        <ul>
+                <a id="create-new-btn" class="btn" href="{% url 'new' %}">+ New Meeting</a>
+            </div>
+            {% if meetings %}
+                <ul class="list">
             {% for meeting in meetings %}
-            <li><a href="{% url 'detail' meeting.id %}">{{meeting.title}}</a></li>
+                    <li>
+                        <a class="list-item" href="{% url 'detail' meeting.id %}">
+                            <span class="date-badge">
+                                <span class="date-badge-month">{{ meeting.date|date:"M" }}</span>
+                                <span class="date-badge-day">{{ meeting.date|date:"j" }}</span>
+                            </span>
+                            <span class="list-item-body">
+                                <span class="list-item-title">{{ meeting.title }}</span>
+                                <span class="list-item-meta">{{ meeting.date|date:"l" }} &middot; {{ meeting.start_time|time:"g:i A" }} &middot; {{ meeting.room.name }}</span>
+                            </span>
+                            <span class="chevron" aria-hidden="true">&rsaquo;</span>
+                        </a>
+                    </li>
             {% endfor %}
         </ul>
-        <a href="{% url 'rooms' %}">Room List</a>
+            {% else %}
+                <div class="empty-state">
+                    <p>No meetings scheduled yet.</p>
+                    <a class="btn" href="{% url 'new' %}">Plan your first meeting</a>
+                </div>
+            {% endif %}
+        </section>
     {% endif %}
 {% endblock %}

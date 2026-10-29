@@ -1,17 +1,29 @@
 {% extends 'base.html' %}
 
+{% block title %}Log in - MeetAlly{% endblock %}
+
+{% block container_class %}container-narrow{% endblock %}
+
 {% block content %}
+    <div class="card">
+        <div class="page-title">
+            <h1>Log in</h1>
+            <p>Welcome back. Sign in to manage your meetings.</p>
+        </div>
 
     {% if form.errors %}
-        <p>Your username and password didn't match. Please try again.</p>
+            <div class="alert">Your username and password didn't match. Please try again.</div>
     {% endif %}
 
     <form method="post">
         {% csrf_token %}
-        <table>
+            <div class="form-fields">
             {{ form }}
-        </table>
-        <input type="submit" value="login">
+            </div>
+            <div class="actions">
+                <input type="submit" value="Log in">
+            </div>
     </form>
-
+    </div>
 {% endblock %}
+
