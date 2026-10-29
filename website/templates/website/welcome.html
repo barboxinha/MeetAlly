@@ -17,17 +17,23 @@
                 <img class="wordmark" src="{% static 'website/meetally-dark.gif' %}" alt="MeetAlly">
             </picture></h1>
         <p>Schedule meetings with your colleagues <span class="highlight">Anytime, Anywhere</span>.</p>
+        {% if not user.is_authenticated %}
+            <div class="actions">
+                <a href="{% url 'login' %}" class="btn btn-lg">Log in to get started</a>
+                <a href="{% url 'signup' %}" class="btn btn-secondary btn-lg">Sign Up</a>
+            </div>
+        {% endif %}
     </section>
 
     {% if user.is_authenticated %}
         <section class="card">
             <div class="card-header">
-        <h2>Meetings</h2>
+                <h2>Meetings</h2>
                 <a id="create-new-btn" class="btn" href="{% url 'new' %}">+ New Meeting</a>
             </div>
             {% if meetings %}
                 <ul class="list">
-            {% for meeting in meetings %}
+                    {% for meeting in meetings %}
                     <li>
                         <a class="list-item" href="{% url 'detail' meeting.id %}">
                             <span class="date-badge">
@@ -41,8 +47,8 @@
                             <span class="chevron" aria-hidden="true">&rsaquo;</span>
                         </a>
                     </li>
-            {% endfor %}
-        </ul>
+                    {% endfor %}
+                </ul>
             {% else %}
                 <div class="empty-state">
                     <p>No meetings scheduled yet.</p>

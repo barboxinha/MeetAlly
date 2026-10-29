@@ -11,19 +11,19 @@
             <p>Welcome back. Sign in to manage your meetings.</p>
         </div>
 
-    {% if form.errors %}
+        {% if form.errors %}
             <div class="alert">Your username and password didn't match. Please try again.</div>
-    {% endif %}
+        {% endif %}
 
-    <form method="post">
-        {% csrf_token %}
+        <form method="post">
+            {% csrf_token %}
             <div class="form-fields">
-            {{ form }}
+                {{ form }}
             </div>
             <div class="actions">
                 <input type="submit" value="Log in">
             </div>
-    </form>
+        </form>
+        <p class="card-footnote muted">New to MeetAlly? <a href="{% url 'signup' %}">Sign Up</a></p>
     </div>
 {% endblock %}
-

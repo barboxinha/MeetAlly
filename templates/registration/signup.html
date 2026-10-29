@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Sign Up - MeetAlly{% endblock %}
+
+{% block container_class %}container-narrow{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <div class="page-title">
+            <h1>Sign up</h1>
+            <p>Create an account to start scheduling meetings.</p>
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-fields">
+                {{ form }}
+            </div>
+            <div class="actions">
+                <input type="submit" value="Create Account">
+            </div>
+        </form>
+        <p class="card-footnote muted">Already have an account? <a href="{% url 'login' %}">Log In</a></p>
+    </div>
+{% endblock %}
