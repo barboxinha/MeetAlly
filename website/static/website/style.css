@@ -40,10 +40,10 @@
     box-sizing: border-box;
 }
 
-    html {
+html {
     font-size: 16px;
     -webkit-font-smoothing: antialiased;
-    }
+}
 
 body {
     margin: 0;
@@ -588,6 +588,22 @@ a.list-item:hover .chevron {
 
 .hero h1 {
     margin-bottom: 0.75rem;
+}
+
+/* Handwritten wordmark, one image per theme; baseline lines up with the heading text */
+.hero .wordmark {
+    width: auto;
+    height: 1.9em;
+    vertical-align: -0.65em;
+}
+
+.wordmark-dark,
+:root[data-theme="dark"] .wordmark-light {
+    display: none;
+}
+
+:root[data-theme="dark"] .wordmark-dark {
+    display: inline;
 }
 
 .hero p {

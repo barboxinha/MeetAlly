@@ -10,6 +10,11 @@
         </div>
         <h1>Welcome to
             <picture class="wordmark-light">
+                <source srcset="{% static 'website/meetally-light-static.gif' %}" media="(prefers-reduced-motion: reduce)">
+                <img class="wordmark" src="{% static 'website/meetally-light.gif' %}" alt="MeetAlly">
+            </picture><picture class="wordmark-dark">
+                <source srcset="{% static 'website/meetally-dark-static.gif' %}" media="(prefers-reduced-motion: reduce)">
+                <img class="wordmark" src="{% static 'website/meetally-dark.gif' %}" alt="MeetAlly">
             </picture></h1>
         <p>Schedule meetings with your colleagues <span class="highlight">Anytime, Anywhere</span>.</p>
     </section>
