@@ -1,15 +1,22 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from django.forms import modelform_factory
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import PermissionDenied
 
 from meetings.models import Meeting, Room
+
+
+def can_manage(user, meeting):
+    # Only a meeting's participants (and superusers) may change or delete it
+    return user.is_superuser or meeting.participants.filter(pk=user.pk).exists()
 
 
 # View functions
 @login_required
 def detail(request, id):
     meeting = get_object_or_404(Meeting, pk=id)
-    return render(request, "meetings/detail.html", {"meeting": meeting})
+    context = {"meeting": meeting, "can_manage": can_manage(request.user, meeting)}
+    return render(request, "meetings/detail.html", context)
 
 
 @login_required
@@ -37,6 +44,8 @@ def new(request):
 @login_required
 def edit(request, id):
     meeting = get_object_or_404(Meeting, pk=id)
+    if not can_manage(request.user, meeting):
+        raise PermissionDenied
     if request.method == "POST":
         form = MeetingForm(request.POST, instance=meeting)
         if form.is_valid():
@@ -50,6 +59,8 @@ def edit(request, id):
 @login_required
 def delete(request, id):
     meeting = get_object_or_404(Meeting, pk=id)
+    if not can_manage(request.user, meeting):
+        raise PermissionDenied
     if request.method == "POST":
         # Form is only shown to ask for confirmation.
         # When we get a POST request, we know we can go ahead and delete.

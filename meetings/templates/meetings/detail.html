@@ -5,7 +5,7 @@
 {% block content %}
     <a class="back-link" href="{% url 'welcome' %}">&lsaquo; All meetings</a>
     <div class="card">
-    <h1>{{ meeting.title }}</h1>
+        <h1>{{ meeting.title }}</h1>
         <div class="meta-grid">
             <div class="meta-item">
                 <span class="meta-label">Date</span>
@@ -26,22 +26,23 @@
             </div>
         </div>
 
-    <h2>Participants</h2>
+        <h2>Participants</h2>
         <ul class="list">
-        {% for participant in meeting.participants.all %}
+            {% for participant in meeting.participants.all %}
                 <li class="list-item">
                     <span class="avatar">{{ participant.username|first }}</span>
                     <span class="list-item-body">{{ participant.username }}</span>
                 </li>
             {% empty %}
                 <li class="list-item muted">No participants yet.</li>
-        {% endfor %}
-    </ul>
-    <a href="{% url 'edit' meeting.id %}">Update this meeting</a><br/>
-    <a href="{% url 'delete' meeting.id %}">Delete this meeting</a><br/>
+            {% endfor %}
+        </ul>
+
+        {% if can_manage %}
             <div class="actions">
                 <a class="btn" href="{% url 'edit' meeting.id %}">Update this meeting</a>
                 <a class="btn btn-secondary" href="{% url 'delete' meeting.id %}">Delete</a>
             </div>
+        {% endif %}
     </div>
 {% endblock %}
