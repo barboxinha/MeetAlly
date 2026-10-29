@@ -25,6 +25,24 @@ def room_list(request):
     return render(request, "meetings/room_list.html", {"rooms": rooms})
 
 
+RoomForm = modelform_factory(Room, exclude=[])
+
+@login_required
+def new_room(request):
+    # Only superusers can add rooms; the button is hidden for everyone else,
+    # but the URL could still be typed in directly.
+    if not request.user.is_superuser:
+        raise PermissionDenied
+    if request.method == "POST":
+        form = RoomForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("rooms")
+    else:
+        form = RoomForm()
+    return render(request, "meetings/new_room.html", {"form": form})
+
+
 # This is a new class generated from your model by the modelform_factory function.
 # To exclude specific fields from the form, pass them as a list to the exclude parameter.
 MeetingForm = modelform_factory(Meeting, exclude=[])
