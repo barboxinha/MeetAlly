@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" type="text/css" href="{% static 'website/style.css' %}">
+    <link rel="icon" type="image/png" href="{% static 'website/calendar.png' %}">
+    <title>{% block title %}MeetAlly{% endblock %}</title>
+    <script>
+        // Apply the saved theme (or the system preference) before first paint
+        (function () {
+            var theme;
+            try { theme = localStorage.getItem('theme'); } catch (e) {}
+            if (theme !== 'light' && theme !== 'dark') {
+                theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            }
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav">
+            <a href="{% url 'welcome' %}" class="brand">
+                <img src="{% static 'website/calendar.png' %}" alt="">
+                MeetAlly
+            </a>
+            {% if user.is_authenticated %}
+            <div class="nav-links">
+                <a href="{% url 'welcome' %}">Meetings</a>
+                <a href="{% url 'rooms' %}">Rooms</a>
+            </div>
+            <div class="nav-user">
+                <div class="user-chip">
+                    <span class="avatar">{{ user.get_username|first }}</span>
+                    <span>{{ user.get_username }}</span>
+                </div>
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-secondary btn-sm">Log Out</button>
+                </form>
+            </div>
+            {% else %}
+            <div class="nav-user">
+                <a href="{% url 'login' %}" class="btn btn-sm">Log In</a>
+            </div>
+            {% endif %}
+            <button type="button" class="theme-toggle" role="switch" aria-checked="false" aria-label="Dark mode" id="theme-toggle">
+                <span class="theme-toggle-label">Dark Mode</span>
+                <span class="theme-toggle-track" aria-hidden="true"><span class="theme-toggle-thumb"></span></span>
+            </button>
+        </nav>
+    </header>
+    <main class="container {% block container_class %}{% endblock %}">
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer class="site-footer">
+        <p>&copy; MeetAlly, Inc. {% now "Y" %} All rights reserved.</p>
+    </footer>
+    <script>
+        (function () {
+            var root = document.documentElement;
+            var toggle = document.getElementById('theme-toggle');
+            toggle.setAttribute('aria-checked', String(root.getAttribute('data-theme') === 'dark'));
+            toggle.addEventListener('click', function () {
+                var theme = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                root.setAttribute('data-theme', theme);
+                toggle.setAttribute('aria-checked', String(theme === 'dark'));
+                try { localStorage.setItem('theme', theme); } catch (e) {}
+            });
+        })();
+    </script>
+</body>
+</html>

@@ -1,9 +1,31 @@
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 
-# View function to handle http request for welcome page
+from meetings.models import Meeting
+
+# View functions to handle http requests
 def welcome(request):
-    return HttpResponse("Welcome to MeetAlly! Glad to see you here!")
+    if request.user.is_authenticated:
+        context = {"meetings": Meeting.objects.all()}
+    else:
+        context = {}
+    return render(request, template_name="website/welcome.html", context=context)
+
+
+def signup(request):
+    if request.user.is_authenticated:
+        return redirect("welcome")
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            # Log the new user straight in rather than sending them to the login page
+            login(request, form.save())
+            return redirect("welcome")
+    else:
+        form = UserCreationForm()
+    return render(request, "registration/signup.html", {"form": form})
 
 
 def about(request):

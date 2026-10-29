@@ -40,6 +40,7 @@
     <Compile Include="meetings\admin.py" />
     <Compile Include="meetings\migrations\__init__.py" />
     <Compile Include="meetings\models.py" />
+    <Compile Include="meetings\urls.py" />
     <Compile Include="meetings\views.py" />
     <Compile Include="meetings\__init__.py" />
     <Compile Include="website\views.py" />
@@ -50,9 +51,19 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="db.sqlite3" />
-    <Content Include="meetings\templates\meetings\index.html" />
+    <Content Include="meetings\templates\meetings\confirm_delete.html" />
+    <Content Include="meetings\templates\meetings\detail.html" />
+    <Content Include="meetings\templates\meetings\edit.html" />
+    <Content Include="meetings\templates\meetings\new.html" />
+    <Content Include="meetings\templates\meetings\new_room.html" />
+    <Content Include="meetings\templates\meetings\room_list.html" />
     <Content Include="requirements.txt" />
-    <Content Include="website\templates\website\index.html" />
+    <Content Include="templates\registration\login.html" />
+    <Content Include="templates\registration\signup.html" />
+    <Content Include="website\static\website\calendar.png" />
+    <Content Include="website\static\website\style.css" />
+    <Content Include="templates\base.html" />
+    <Content Include="website\templates\website\welcome.html" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="MeetAlly\" />
@@ -60,7 +71,11 @@
     <Folder Include="meetings\migrations\" />
     <Folder Include="meetings\templates\" />
     <Folder Include="meetings\templates\meetings\" />
+    <Folder Include="templates\" />
+    <Folder Include="templates\registration\" />
     <Folder Include="website\" />
+    <Folder Include="website\static\" />
+    <Folder Include="website\static\website\" />
     <Folder Include="website\templates\" />
     <Folder Include="website\templates\website\" />
   </ItemGroup>

@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}MeetAlly - Meetings made easy!{% endblock %}
+
+{% block content %}
+    <section class="hero">
+        <div class="hero-icon">
+            <img src="{% static 'website/calendar.png' %}" alt="Calendar Icon"/>
+        </div>
+        <h1>Welcome to
+            <picture class="wordmark-light">
+                <source srcset="{% static 'website/meetally-light-static.gif' %}" media="(prefers-reduced-motion: reduce)">
+                <img class="wordmark" src="{% static 'website/meetally-light.gif' %}" alt="MeetAlly">
+            </picture><picture class="wordmark-dark">
+                <source srcset="{% static 'website/meetally-dark-static.gif' %}" media="(prefers-reduced-motion: reduce)">
+                <img class="wordmark" src="{% static 'website/meetally-dark.gif' %}" alt="MeetAlly">
+            </picture></h1>
+        <p>Schedule meetings with your colleagues <span class="highlight">Anytime, Anywhere</span>.</p>
+        {% if not user.is_authenticated %}
+            <div class="actions">
+                <a href="{% url 'login' %}" class="btn btn-lg">Log in to get started</a>
+                <a href="{% url 'signup' %}" class="btn btn-secondary btn-lg">Sign Up</a>
+            </div>
+        {% endif %}
+    </section>
+
+    {% if user.is_authenticated %}
+        <section class="card">
+            <div class="card-header">
+                <h2>Meetings</h2>
+                <a id="create-new-btn" class="btn" href="{% url 'new' %}">+ New Meeting</a>
+            </div>
+            {% if meetings %}
+                <ul class="list">
+                    {% for meeting in meetings %}
+                    <li>
+                        <a class="list-item" href="{% url 'detail' meeting.id %}">
+                            <span class="date-badge">
+                                <span class="date-badge-month">{{ meeting.date|date:"M" }}</span>
+                                <span class="date-badge-day">{{ meeting.date|date:"j" }}</span>
+                            </span>
+                            <span class="list-item-body">
+                                <span class="list-item-title">{{ meeting.title }}</span>
+                                <span class="list-item-meta">{{ meeting.date|date:"l" }} &middot; {{ meeting.start_time|time:"g:i A" }} &middot; {{ meeting.room.name }}</span>
+                            </span>
+                            <span class="chevron" aria-hidden="true">&rsaquo;</span>
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <div class="empty-state">
+                    <p>No meetings scheduled yet.</p>
+                    <a class="btn" href="{% url 'new' %}">Plan your first meeting</a>
+                </div>
+            {% endif %}
+        </section>
+    {% endif %}
+{% endblock %}

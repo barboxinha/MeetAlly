@@ -1,0 +1,10 @@
+REGENERATING THE HANDWRITTEN LOGO
+
+The animated "MeetAlly" on the home page is a set of GIFs drawn by a small, dependency-free script. 
+If the app's accent color changes, update the colors at the top of `tools/make_wordmark.py` and rebuild them:
+
+Then, run the following command in your Terminal:
+
+```bash
+python tools/make_wordmark.py website/static/website
+```
