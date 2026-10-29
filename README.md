@@ -22,7 +22,7 @@
 
 ***MeetAlly*** is a lightweight meeting planner built with `Django`. *Sign up, book a room, invite your colleagues, and see every upcoming meeting at a glance: what it is, when it starts, and where to go.*
 
-The purpose of this project was to learn the `Django` framework; get familiar with its patterns, project structure, inner workings, and how to build effectively with it.
+This project was an exercise to learn the `Django` framework; get familiar with its patterns, project structure, inner workings, and how to build effectively with it.
 
 ## Features
 
